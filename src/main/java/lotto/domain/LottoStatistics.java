@@ -8,7 +8,10 @@ public class LottoStatistics {
 
     private static final int NONE_RANK = 0;
 
-    // [Key] Rank, [Value] Matched Count (Statistics)
+    /**
+     * Key: Rank <br>
+     * Integer: Matched Count
+     */
     private final Map<Rank, Integer> statisticsMap;
 
     public LottoStatistics(WinLotto winLotto, LottoTickets lottoTickets) {

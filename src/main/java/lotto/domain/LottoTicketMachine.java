@@ -15,7 +15,7 @@ public class LottoTicketMachine {
         int autoAmount = amount - manualCount * AMOUNT_PER_TICKET;
         int autoCount = autoAmount / AMOUNT_PER_TICKET;
 
-        return new IssuedLottoTickets(LottoTickets.auto(autoCount), LottoTickets.manual(manualLottoNumbers));
+        return new IssuedLottoTickets(LottoTickets.manual(manualLottoNumbers), LottoTickets.auto(autoCount));
     }
 
     private static void validatePurchaseAmount(int amount) {

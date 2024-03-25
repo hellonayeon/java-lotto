@@ -50,6 +50,10 @@ public class LottoNumbers {
         }
     }
 
+    private boolean notMatchSize(List<Integer> numbers) {
+        return numbers.size() != SIZE;
+    }
+
     private void validateDuplicateNumbers(List<Integer> numbers) throws DuplicateLottoNumbersException {
         if (hasDuplicates(numbers)) {
             throw new DuplicateLottoNumbersException(numbers);
@@ -58,10 +62,6 @@ public class LottoNumbers {
 
     private boolean hasDuplicates(List<Integer> numbers) {
         return numbers.stream().distinct().count() < numbers.size();
-    }
-
-    private boolean notMatchSize(List<Integer> numbers) {
-        return numbers.size() != SIZE;
     }
 
     public boolean contains(LottoNumber number) {

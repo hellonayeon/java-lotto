@@ -2,7 +2,10 @@ package lotto.domain;
 
 import lotto.exception.IllegalLottoNumberException;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoNumber {
 
@@ -13,7 +16,7 @@ public class LottoNumber {
 
     public static LottoNumber of(int number) {
         validateNumberRange(number);
-        return LottoNumberCache.cache[number];
+        return LottoNumberCache.get(number);
     }
 
     private LottoNumber(int number) {
@@ -50,13 +53,16 @@ public class LottoNumber {
     private static class LottoNumberCache {
         static final int low = NUMBER_RANGE_FROM;
         static final int high = NUMBER_RANGE_TO;
-        static final LottoNumber[] cache;
+        static final List<LottoNumber> cache;
 
         static {
-            cache = new LottoNumber[(high - low) + 2]; // cache array index start 'from' number
-            for (int number = low; number < cache.length; number++) {
-                cache[number] = new LottoNumber(number);
-            }
+            cache = IntStream.rangeClosed(low, high)
+                    .mapToObj(LottoNumber::new)
+                    .collect(Collectors.toUnmodifiableList());
+        }
+
+        public static LottoNumber get(int number) {
+            return cache.get(number - 1);
         }
 
         private LottoNumberCache() {

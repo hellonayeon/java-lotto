@@ -25,20 +25,15 @@ public class ResultView {
     }
 
     private static String formatLottoTickets(LottoTickets lottoTickets) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (LottoTicket ticket : lottoTickets.get()) {
-            stringBuilder.append("[")
-                    .append(formatLottoNumber(ticket))
-                    .append("]")
-                    .append(System.lineSeparator());
-        }
-        return stringBuilder.toString();
+        return lottoTickets.get().stream()
+                .map(ResultView::formatLottoNumber)
+                .collect(Collectors.joining(System.lineSeparator(), "", System.lineSeparator()));
     }
 
     private static String formatLottoNumber(LottoTicket ticket) {
         return ticket.get().stream()
                 .map(number -> Integer.toString(number.get()))
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(", ", "[", "]"));
     }
 
     public static void printLottoStatistics(LottoStatistics statistics) {
