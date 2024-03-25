@@ -24,7 +24,7 @@ public class LottoTicketMachineTest {
     void 로또_발권_자동_수동() {
         IssuedLottoTickets issuedLottoTickets = LottoTicketMachine.issue(5000, List.of(
                 List.of(1, 2, 3, 4, 5, 6),
-                List.of(41, 42, 43, 44, 45)
+                List.of(40, 41, 42, 43, 44, 45)
         ));
         assertThat(issuedLottoTickets.manualSize()).isEqualTo(2);
         assertThat(issuedLottoTickets.autoSize()).isEqualTo(3);
